@@ -876,7 +876,8 @@ Create a table that lists the average Math Score for students of each grade leve
 ```python
 x = student.groupby(["school_name", "grade"]).agg({"math_score":"mean"})
 x["math_score"]= round(x["math_score"], 2)
-x
+x.unstack()
+#x.pivot(index = 'school_name', columns = "grade", values = 'math_score')
 ```
 
 
@@ -892,209 +893,111 @@ x
         vertical-align: top;
     }
 
-    .dataframe thead th {
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
         text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
   <thead>
-    <tr style="text-align: right;">
+    <tr>
       <th></th>
-      <th></th>
-      <th>math_score</th>
+      <th colspan="4" halign="left">math_score</th>
+    </tr>
+    <tr>
+      <th>grade</th>
+      <th>10th</th>
+      <th>11th</th>
+      <th>12th</th>
+      <th>9th</th>
     </tr>
     <tr>
       <th>school_name</th>
-      <th>grade</th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th rowspan="4" valign="top">Campbell High School</th>
-      <th>10th</th>
+      <th>Campbell High School</th>
       <td>84.27</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>83.94</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>82.06</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>83.84</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Galloway High School</th>
-      <th>10th</th>
+      <th>Galloway High School</th>
       <td>83.55</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>83.98</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>83.20</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>83.53</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Glass High School</th>
-      <th>10th</th>
+      <th>Glass High School</th>
       <td>81.04</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>81.39</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>80.82</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>81.87</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Gomez High School</th>
-      <th>10th</th>
+      <th>Gomez High School</th>
       <td>83.97</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>83.87</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>83.83</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>83.68</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Gonzalez High School</th>
-      <th>10th</th>
+      <th>Gonzalez High School</th>
       <td>83.95</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>83.20</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>82.84</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>83.55</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Hawkins High School</th>
-      <th>10th</th>
+      <th>Hawkins High School</th>
       <td>81.48</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>81.89</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>81.94</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>81.67</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Kelly High School</th>
-      <th>10th</th>
+      <th>Kelly High School</th>
       <td>81.88</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>81.50</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>81.45</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>81.79</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Macdonald High School</th>
-      <th>10th</th>
+      <th>Macdonald High School</th>
       <td>83.81</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>83.48</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>83.52</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>84.26</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Miller High School</th>
-      <th>10th</th>
+      <th>Miller High School</th>
       <td>83.62</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>83.64</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>83.30</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>83.82</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Sherman High School</th>
-      <th>10th</th>
+      <th>Sherman High School</th>
       <td>81.53</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>81.23</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>81.74</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>81.50</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Smith High School</th>
-      <th>10th</th>
+      <th>Smith High School</th>
       <td>81.00</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>81.83</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>81.55</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>81.91</td>
     </tr>
   </tbody>
@@ -1112,7 +1015,7 @@ Create a table that lists the average Reading Score for students of each grade l
 ```python
 y = student.groupby(["school_name", "grade"]).agg({"reading_score":"mean"})
 y["reading_score"]= round(y["reading_score"], 2)
-y
+y.unstack()
 ```
 
 
@@ -1128,209 +1031,111 @@ y
         vertical-align: top;
     }
 
-    .dataframe thead th {
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
         text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
   <thead>
-    <tr style="text-align: right;">
+    <tr>
       <th></th>
-      <th></th>
-      <th>reading_score</th>
+      <th colspan="4" halign="left">reading_score</th>
+    </tr>
+    <tr>
+      <th>grade</th>
+      <th>10th</th>
+      <th>11th</th>
+      <th>12th</th>
+      <th>9th</th>
     </tr>
     <tr>
       <th>school_name</th>
-      <th>grade</th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th rowspan="4" valign="top">Campbell High School</th>
-      <th>10th</th>
+      <th>Campbell High School</th>
       <td>93.88</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>94.08</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>93.71</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>93.47</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Galloway High School</th>
-      <th>10th</th>
+      <th>Galloway High School</th>
       <td>93.96</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>93.98</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>94.13</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>94.07</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Glass High School</th>
-      <th>10th</th>
+      <th>Glass High School</th>
       <td>77.32</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>77.13</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>76.62</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>76.44</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Gomez High School</th>
-      <th>10th</th>
+      <th>Gomez High School</th>
       <td>93.97</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>93.81</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>94.13</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>94.19</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Gonzalez High School</th>
-      <th>10th</th>
+      <th>Gonzalez High School</th>
       <td>94.10</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>94.42</td>
-    </tr>
-    <tr>
-      <th>12th</th>
+      <td>94.04</td>
       <td>94.04</td>
     </tr>
     <tr>
-      <th>9th</th>
-      <td>94.04</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">Hawkins High School</th>
-      <th>10th</th>
+      <th>Hawkins High School</th>
       <td>77.17</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>77.53</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>76.85</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>76.52</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Kelly High School</th>
-      <th>10th</th>
+      <th>Kelly High School</th>
       <td>77.27</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>76.64</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>76.97</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>76.37</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Macdonald High School</th>
-      <th>10th</th>
+      <th>Macdonald High School</th>
       <td>94.14</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>93.80</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>93.67</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>94.05</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Miller High School</th>
-      <th>10th</th>
+      <th>Miller High School</th>
       <td>94.04</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>94.24</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>93.82</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>93.90</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Sherman High School</th>
-      <th>10th</th>
+      <th>Sherman High School</th>
       <td>77.11</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>77.31</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>77.50</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>77.29</td>
     </tr>
     <tr>
-      <th rowspan="4" valign="top">Smith High School</th>
-      <th>10th</th>
+      <th>Smith High School</th>
       <td>76.81</td>
-    </tr>
-    <tr>
-      <th>11th</th>
       <td>77.34</td>
-    </tr>
-    <tr>
-      <th>12th</th>
       <td>77.75</td>
-    </tr>
-    <tr>
-      <th>9th</th>
       <td>76.86</td>
     </tr>
   </tbody>
